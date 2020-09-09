@@ -1,0 +1,30 @@
+pipeline{
+    agent none
+    stages{
+        stage('Checkout'){
+            agent any
+            steps{
+                git 'https://github.com/Bogathi1984/Game_Of_Life.git'
+            }
+        }
+        stage('Compile'){
+            agent any
+            steps{
+                sh 'mvn compile'
+            }
+        }
+        stage('Test'){
+            agent any
+            steps{
+                sh 'mvn test'
+            }
+        }
+        stage('Package'){
+            agent any
+            steps{
+                sh 'mvn package'
+            }
+        }
+    }
+    
+}
